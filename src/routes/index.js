@@ -6,7 +6,6 @@ const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
 const Page404 = lazy(() => import('../pages/protected/404'))
 const Blank = lazy(() => import('../pages/protected/Blank'))
-const Charts = lazy(() => import('../pages/protected/Charts'))
 const Leads = lazy(() => import('../pages/protected/Leads'))
 const Integration = lazy(() => import('../pages/protected/Integration'))
 const Calendar = lazy(() => import('../pages/protected/Calendar'))
@@ -17,7 +16,11 @@ const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
 const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
-
+const EditCustomerProfile = lazy(() => import('../pages/protected/EditCustomerProfile'))
+const Appointments = lazy(() => import('../pages/protected/Appointments'))
+const Reports = lazy(() => import('../pages/protected/Reports'))
+const Inventory = lazy(() => import('../pages/protected/Inventory'))
+const EditProductDetails = lazy(() => import('../pages/protected/EditProductDetails'))
 
 const routes = [
   {
@@ -45,12 +48,32 @@ const routes = [
     component: Transactions,
   },
   {
+    path: '/edit-product-details',
+    component: EditProductDetails,
+  },
+  {
+    path: '/inventory',
+    component: Inventory,
+  },
+  {
     path: '/settings-profile',
     component: ProfileSettings,
   },
   {
+    path: '/edit-customer-profile',
+    component: EditCustomerProfile,
+  },
+  {
+    path: '/appointments',
+    component: Appointments,
+  },
+  {
     path: '/settings-billing',
     component: Bills,
+  },
+  {
+    path: '/reports',
+    component: Reports,
   },
   {
     path: '/getting-started',
@@ -69,15 +92,15 @@ const routes = [
     component: Integration,
   },
   {
-    path: '/charts',
-    component: Charts,
-  },
-  {
     path: '/404',
     component: Page404,
   },
   {
     path: '/blank',
+    component: Blank,
+  },
+  {
+    path: '/login',
     component: Blank,
   },
 ]

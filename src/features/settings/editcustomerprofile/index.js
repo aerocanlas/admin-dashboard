@@ -7,7 +7,7 @@ import InputText from '../../../components/Input/InputText'
 import TextAreaInput from '../../../components/Input/TextAreaInput'
 import ToogleInput from '../../../components/Input/ToogleInput'
 
-function ProfileSettings(){
+function EditCustomerProfile(){
 
 
     const dispatch = useDispatch()
@@ -24,9 +24,9 @@ function ProfileSettings(){
     return(
         <>
             
-            <TitleCard title="Admin Profile Settings" topMargin="mt-2">
+            <TitleCard title="Edit Details" topMargin="mt-2">
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <InputText labelTitle="First Name" defaultValue="Juan" updateFormValue={updateFormValue}/>
                     <InputText labelTitle="Middle Name" defaultValue="Reyes" updateFormValue={updateFormValue}/>
                     <InputText labelTitle="Last Name" defaultValue="Dela Cruz" updateFormValue={updateFormValue}/>
@@ -34,7 +34,6 @@ function ProfileSettings(){
                     <InputText labelTitle="Shipping Address" defaultValue="Espana Blvd., Sampaloc, Manila, Philippines 1008." updateFormValue={updateFormValue}/>
                     <InputText labelTitle="Mobile Number" defaultValue="09123456789" updateFormValue={updateFormValue}/>
                 </div>
-                
                 <div className="divider" ></div>
 
                 <div className="mt-16"><button className="btn btn-primary float-right" onClick={() => updateProfile()}>Update</button></div>
@@ -44,4 +43,4 @@ function ProfileSettings(){
 }
 
 
-export default ProfileSettings
+export default EditCustomerProfile

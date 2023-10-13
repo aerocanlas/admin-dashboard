@@ -1,10 +1,7 @@
 import moment from "moment"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
-import { openModal } from "../common/modalSlice"
-import { deleteLead, getLeadsContent } from "./leadSlice"
-import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from '../../utils/globalConstantUtil'
+import { showNotification } from "../common/headerSlice"
 import TitleCard from "../../components/Cards/TitleCard"
 import { RECENT_TRANSACTIONS } from "../../utils/dummyData"
 import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon'
@@ -12,6 +9,10 @@ import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import SearchBar from "../../components/Input/SearchBar"
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
+import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon'
+import MinusCircleIcon from '@heroicons/react/24/outline/MinusCircleIcon'
+import InputText from '../../components/Input/InputText'
+
 
 
 const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
@@ -23,12 +24,6 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
     const showFiltersAndApply = (params) => {
         applyFilter(params)
         setFilterParam(params)
-    }
-
-    const dispatch = useDispatch()
-
-    const openAddNewLeadModal = () => {
-        dispatch(openModal({title : "Add New Lead", bodyType : MODAL_BODY_TYPES.LEAD_ADD_NEW}))
     }
 
     const removeAppliedFilter = () => {
@@ -68,27 +63,9 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
     )
 }
 
-const STATUS = [
-    {status : "Pending"},
-
-    {status : "Pending"},
-
-    {status : "Pending"},
-
-]
 
 function Transactions(){
 
-
-
-    const [status, setStatus] = useState(STATUS)
-
-    const {leads } = useSelector(state => state.lead)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getLeadsContent())
-    }, [])
 
     const [trans, setTrans] = useState(RECENT_TRANSACTIONS)
 
@@ -100,13 +77,6 @@ function Transactions(){
         let filteredTransactions = RECENT_TRANSACTIONS.filter((t) => {return t.category == params})
         setTrans(filteredTransactions)
     }
-    
-    const deleteCurrentLead = (index) => {
-        dispatch(openModal({title : "Confirmation", bodyType : MODAL_BODY_TYPES.CONFIRMATION, 
-        extraObject : { message : `Are you sure you want to delete this user?`, type : CONFIRMATION_MODAL_CLOSE_TYPES.LEAD_DELETE, index}}))
-    }
-
-    const navigate = useNavigate();
 
     // Search according to name
     const applySearch = (value) => {
@@ -114,10 +84,8 @@ function Transactions(){
         setTrans(filteredTransactions)
     }
 
-    const getPaymentStatus = (status) => {
-        if(status  === "Paid")return <div className="badge badge-success">{status}</div>
-        if(status  === "Pending")return <div className="badge badge-primary">{status}</div>
-        else return <div className="badge badge-ghost">{status}</div>
+    const updateFormValue = ({updateType, value}) => {
+        console.log(updateType)
     }
 
     return(
@@ -135,8 +103,7 @@ function Transactions(){
                         <th>Product Name</th>
                         <th>Product Status</th>
                         <th>Category</th>
-                        <th>Price</th>
-                        <th>Actions</th>
+                        <th className="pl-10">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -155,12 +122,21 @@ function Transactions(){
                                     </td>
                                     <td>#{l.productID}</td>
                                     <td>{l.productName}</td>
-                                    <td>In Stock</td>
+                                    <td>{l.productStatus}</td>
                                     <td>{l.category}</td>
-                                    <td>{l.price}</td>
+                
                                     <td>
-                                        <button className="btn btn-square btn-ghost" onClick={() => navigate("/app/edit-product-details")}><PencilSquareIcon className="w-5"/></button>
-                                        <button className="btn btn-square btn-ghost" ><TrashIcon className="w-5"/></button>
+                                        <div class="flex align-items-center">
+                                    <button className=" btn btn-square btn-ghost" ><MinusCircleIcon className="w-5"/></button>
+                                        <form >
+                                            <div>
+                                            <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
+                                            <input type="text" id="quantity" class=" w-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0" required></input>
+                                            </div>
+                                            
+                                        </form>
+                                        <button className=" btn btn-square btn-ghost" ><PlusCircleIcon className="w-5"/></button>
+                                        </div>  
                                     </td>
                                     </tr>
                                 )

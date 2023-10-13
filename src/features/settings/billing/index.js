@@ -3,11 +3,14 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import TitleCard from "../../../components/Cards/TitleCard"
 import { showNotification } from '../../common/headerSlice'
+import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
+import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
+
 
 
 
 const BILLS = [
-    {invoiceNo : "#4567", amount : "23,989", description : "Product usages", status : "Pending", generatedOn : moment(new Date()).add(-30*1, 'days').format("DD MMM YYYY"),  paidOn : "-"},
+    {invoiceNo : "#4567", amount : "23,989", description : "Product Usages", status : "Pending", generatedOn : moment(new Date()).add(-30*1, 'days').format("DD MMM YYYY"),  paidOn : "-"},
 
     {invoiceNo : "#4523", amount : "34,989", description : "Product usages", status : "Pending", generatedOn : moment(new Date()).add(-30*2, 'days').format("DD MMM YYYY"), paidOn : "-"},
 
@@ -40,19 +43,20 @@ function Billing(){
     return(
         <>
             
-            <TitleCard title="Billing History" topMargin="mt-2">
+            <TitleCard title="Order List" topMargin="mt-2">
 
                 {/* Invoice list in table format loaded constant */}
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
                     <tr>
-                        <th>Invoice No</th>
-                        <th>Invoice Generated On</th>
-                        <th>Description</th>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Date Ordered</th>
                         <th>Amount</th>
-                        <th>Status</th>
-                        <th>Invoice Paid On</th>
+                        <th>Payment Method</th>
+                        <th>Order Status</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -61,11 +65,17 @@ function Billing(){
                                 return(
                                     <tr key={k}>
                                     <td>{l.invoiceNo}</td>
+                                    <td>Juan Dela Cruz</td>
                                     <td>{l.generatedOn}</td>
-                                    <td>{l.description}</td>
-                                    <td>${l.amount}</td>
+                                    <td>PHP {l.amount}.00</td>
+                                    <td>GCash</td>
                                     <td>{getPaymentStatus(l.status)}</td>
-                                    <td>{l.paidOn}</td>
+
+                                    <td>
+                                        <button className="btn btn-square btn-ghost"><PencilSquareIcon className="w-5"/></button>
+                                        <button className="btn btn-square btn-ghost"><TrashIcon className="w-5"/></button>
+                                    </td>
+
                                     </tr>
                                 )
                             })

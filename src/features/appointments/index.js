@@ -70,7 +70,7 @@ function Transactions(){
     return(
         <>
             
-            <TitleCard title="Services List" topMargin="mt-2" TopSideButtons={<TopSideButtons applySearch={applySearch} applyFilter={applyFilter} removeFilter={removeFilter}/>}>
+            <TitleCard title="Appoinment List" topMargin="mt-2" TopSideButtons={<TopSideButtons applySearch={applySearch} applyFilter={applyFilter} removeFilter={removeFilter}/>}>
 
                 {/* Team Member list in table format loaded constant */}
             <div className="overflow-x-auto w-full">
@@ -78,8 +78,9 @@ function Transactions(){
                     <thead>
                     <tr>
                         <th>Service ID</th>
+                        <th>Customer Name</th>
                         <th>Service Name</th>
-                        <th>Service Status</th>
+                        <th>Appointment Date</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -89,8 +90,9 @@ function Transactions(){
                                 return(
                                     <tr key={k}>
                                     <td>#{l.productID}</td>
+                                    <td>Juan Dela Cruz</td>
                                     <td>Preventive Maintenance</td>
-                                    <td>Available</td>
+                                    <td>27 Sep 2023</td>
                                     <td>
                                         <button className="btn btn-square btn-ghost" ><PencilSquareIcon className="w-5"/></button>
                                         <button className="btn btn-square btn-ghost" ><TrashIcon className="w-5"/></button>

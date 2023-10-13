@@ -1,34 +1,28 @@
 import moment from "moment"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
-import { openModal } from "../common/modalSlice"
-import { deleteLead, getLeadsContent } from "./leadSlice"
-import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from '../../utils/globalConstantUtil'
+import { showNotification } from "../common/headerSlice"
 import TitleCard from "../../components/Cards/TitleCard"
 import { RECENT_TRANSACTIONS } from "../../utils/dummyData"
+import { RECENT_TYPE } from "../../utils/dummyData"
 import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon'
+import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon'
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import SearchBar from "../../components/Input/SearchBar"
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
+import InputText from '../../components/Input/InputText'
 
 
 const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 
     const [filterParam, setFilterParam] = useState("")
     const [searchText, setSearchText] = useState("")
-    const productFilters = ["Car Battery", "Tires", "Tire Mags", "Brake Fluid", "Engine Oil"]
+    const productFilters = ["Daily", "Weekly", "Monthly"]
 
     const showFiltersAndApply = (params) => {
         applyFilter(params)
         setFilterParam(params)
-    }
-
-    const dispatch = useDispatch()
-
-    const openAddNewLeadModal = () => {
-        dispatch(openModal({title : "Add New Lead", bodyType : MODAL_BODY_TYPES.LEAD_ADD_NEW}))
     }
 
     const removeAppliedFilter = () => {
@@ -47,10 +41,6 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 
     return(
         <div className="inline-block float-right">
-            
-        <div className="inline-block float-right pl-5">
-            <button className="btn px-6 btn-sm normal-case btn-primary">Add New</button>
-        </div>
 
             <div className="dropdown dropdown-bottom dropdown-end">
                 <label tabIndex={0} className="btn btn-sm btn-outline"><FunnelIcon className="w-5 mr-2"/>Filter</label>
@@ -68,64 +58,82 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
     )
 }
 
-const STATUS = [
-    {status : "Pending"},
-
-    {status : "Pending"},
-
-    {status : "Pending"},
-
-]
 
 function Transactions(){
 
+    const [filterParam, setFilterParam] = useState("")
+    const [searchText, setSearchText] = useState("")
+    const typeFilters = ["Order Summary"]
 
+    const showFiltersAndApply = (params) => {
+        applyFilter(params)
+        setFilterParam(params)
+    }
 
-    const [status, setStatus] = useState(STATUS)
+    const removeAppliedFilter = () => {
+        removeFilter()
+        setFilterParam("")
+        setSearchText("")
+    }
 
-    const {leads } = useSelector(state => state.lead)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getLeadsContent())
-    }, [])
-
-    const [trans, setTrans] = useState(RECENT_TRANSACTIONS)
+    const [trans, setTrans] = useState(RECENT_TYPE)
 
     const removeFilter = () => {
-        setTrans(RECENT_TRANSACTIONS)
+        setTrans(RECENT_TYPE)
     }
 
     const applyFilter = (params) => {
-        let filteredTransactions = RECENT_TRANSACTIONS.filter((t) => {return t.category == params})
-        setTrans(filteredTransactions)
+        let filteredType = RECENT_TYPE.filter((t) => {return t.category == params})
+        setTrans(filteredType)
     }
-    
-    const deleteCurrentLead = (index) => {
-        dispatch(openModal({title : "Confirmation", bodyType : MODAL_BODY_TYPES.CONFIRMATION, 
-        extraObject : { message : `Are you sure you want to delete this user?`, type : CONFIRMATION_MODAL_CLOSE_TYPES.LEAD_DELETE, index}}))
-    }
-
-    const navigate = useNavigate();
 
     // Search according to name
     const applySearch = (value) => {
-        let filteredTransactions = RECENT_TRANSACTIONS.filter((t) => {return t.email.toLowerCase().includes(value.toLowerCase()) ||  t.email.toLowerCase().includes(value.toLowerCase())})
-        setTrans(filteredTransactions)
+        let filteredType = RECENT_TYPE.filter((t) => {return t.email.toLowerCase().includes(value.toLowerCase()) ||  t.email.toLowerCase().includes(value.toLowerCase())})
+        setTrans(filteredType)
     }
 
-    const getPaymentStatus = (status) => {
-        if(status  === "Paid")return <div className="badge badge-success">{status}</div>
-        if(status  === "Pending")return <div className="badge badge-primary">{status}</div>
-        else return <div className="badge badge-ghost">{status}</div>
+    const updateFormValue = ({updateType, value}) => {
+        console.log(updateType)
     }
 
     return(
         <>
             
-            <TitleCard title="Product List" topMargin="mt-2" TopSideButtons={<TopSideButtons applySearch={applySearch} applyFilter={applyFilter} removeFilter={removeFilter}/>}>
+            <TitleCard title="Generate Reports" topMargin="mt-2" TopSideButtons={<TopSideButtons applySearch={applySearch} applyFilter={applyFilter} removeFilter={removeFilter}/>}>
 
-                {/* Team Member list in table format loaded constant */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div className="pl-3 pb-6">
+                        Order Type <br></br> 
+
+                    <div className="dropdown dropdown-bottom dropdown-end pt-3">
+                        <label tabIndex={0} className="btn btn-sm btn-outline">Choose Order Type<ChevronDownIcon className="pl-2 w-4 mr-1"/></label>
+                        <ul tabIndex={0} className="dropdown-content menu p-1 text-sm shadow bg-base-100 rounded-box w-52">
+                    {
+                        typeFilters.map((l, k) => {
+                            return  <li key={k}><a onClick={() => showFiltersAndApply(l)}>{l}</a></li>
+                        })
+                    }
+                    <div className="divider mt-0 mb-0"></div>
+                    <li><a onClick={() => removeAppliedFilter()}>Remove Filter</a></li>
+                </ul>
+            </div>
+
+
+                    </div>
+
+                    
+                    <InputText labelTitle="Middle Name" defaultValue="Reyes" updateFormValue={updateFormValue}/>
+                    <InputText labelTitle="Last Name" defaultValue="Dela Cruz" updateFormValue={updateFormValue}/>
+                    <InputText labelTitle="Email Address" defaultValue="juandelacruz@gmail.com" updateFormValue={updateFormValue}/>
+                    <InputText labelTitle="Shipping Address" defaultValue="Espana Blvd., Sampaloc, Manila, Philippines 1008." updateFormValue={updateFormValue}/>
+                    <InputText labelTitle="Mobile Number" defaultValue="09123456789" updateFormValue={updateFormValue}/>
+                </div>
+                <div className="divider" ></div>
+
+
+                {/* Team Member list in table format loaded constant
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
@@ -153,13 +161,13 @@ function Transactions(){
                                             </div>
                                         </div>
                                     </td>
-                                    <td>#{l.productID}</td>
+                                    <td>{l.productID}</td>
                                     <td>{l.productName}</td>
-                                    <td>In Stock</td>
+                                    <td>{l.productStatus}</td>
                                     <td>{l.category}</td>
                                     <td>{l.price}</td>
                                     <td>
-                                        <button className="btn btn-square btn-ghost" onClick={() => navigate("/app/edit-product-details")}><PencilSquareIcon className="w-5"/></button>
+                                        <button className="btn btn-square btn-ghost" ><PencilSquareIcon className="w-5"/></button>
                                         <button className="btn btn-square btn-ghost" ><TrashIcon className="w-5"/></button>
                                     </td>
                                     </tr>
@@ -168,7 +176,7 @@ function Transactions(){
                         }
                     </tbody>
                 </table>
-            </div>
+            </div> */}
             </TitleCard>
         </>
     )

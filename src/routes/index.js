@@ -21,6 +21,7 @@ const Appointments = lazy(() => import('../pages/protected/Appointments'))
 const Reports = lazy(() => import('../pages/protected/Reports'))
 const Inventory = lazy(() => import('../pages/protected/Inventory'))
 const EditProductDetails = lazy(() => import('../pages/protected/EditProductDetails'))
+const Login = lazy(() => import('../pages/Login'))
 
 const routes = [
   {
@@ -101,7 +102,7 @@ const routes = [
   },
   {
     path: '/login',
-    component: Blank,
+    component: Login,
   },
 ]
 

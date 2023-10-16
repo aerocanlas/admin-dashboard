@@ -5,14 +5,13 @@ import ErrorText from  '../../components/Typography/ErrorText'
 import InputText from '../../components/Input/InputText'
 import axios from 'axios'
 
-function Register(){
+function Otp(){
 
     const INITIAL_REGISTER_OBJ = {
-        firstname : "",
-        lastname : "",
+        fname : "",
+        lname : "",
         password : "",
-        email : "",
-        phone: ""
+        emailId : ""
     }
 
     const [loading, setLoading] = useState(false)
@@ -31,22 +30,19 @@ function Register(){
         // if(registerObj.password.trim() === "")return setErrorMessage("Password is required! (use any value)")
         // else{
             setLoading(true)
-            await fetch("http://localhost:3001/user/createCustomer", {
+            await fetch("http://localhost:3001/user/createUser", {
                 method: "POST",
                 headers: {
-                    'Content-Type': "application/json",
-            
+                    'Content-Type': "application/json"
                 },
                 body: JSON.stringify({
-                    "email": registerObj.email,
-                    "password": registerObj.password,
-                    "firstname": registerObj.firstname,
-                    "lastname": registerObj.lastname,
-                    "phone": registerObj.phone,
-                    "otps": "12312"
+                    firstname: registerObj.fname,
+                    lastname: registerObj.lname,
+                    password: registerObj.password,
+                    emailId: registerObj.emailId
                 })
-            }).then( async (data) => { 
-                const res = await data.json()        
+            }).then((data) => { 
+                const res = data.json()        
                 console.log(res)
             })
           
@@ -65,7 +61,6 @@ function Register(){
             <div className="card mx-auto w-full max-w-5xl  shadow-xl">
                 <div className="grid  md:grid-cols-2 grid-cols-1  bg-base-100 rounded-xl">
                 <div className=''>
-                        <LandingIntro />
                 </div>
                 <div className='py-24 px-10'>
                     <h2 className='text-2xl font-semibold mb-2 text-center'>Register</h2>
@@ -73,14 +68,13 @@ function Register(){
 
                         <div className="mb-4">
 
-                            <InputText defaultValue={registerObj.firstname} updateType="firstname" containerStyle="mt-4" labelTitle="First Name" updateFormValue={updateFormValue}/>
+                            <InputText defaultValue={registerObj.fname} updateType="fname" containerStyle="mt-4" labelTitle="First Name" updateFormValue={updateFormValue}/>
 
-                            <InputText defaultValue={registerObj.lastname} updateType="lastname" containerStyle="mt-4" labelTitle="Last Name" updateFormValue={updateFormValue}/>
+                            <InputText defaultValue={registerObj.lname} updateType="lnam" containerStyle="mt-4" labelTitle="Last Name" updateFormValue={updateFormValue}/>
                             
-                            <InputText defaultValue={registerObj.email} updateType="email" containerStyle="mt-4" labelTitle="Email Id" updateFormValue={updateFormValue}/>
+                            <InputText defaultValue={registerObj.emailId} updateType="emailId" containerStyle="mt-4" labelTitle="Email Id" updateFormValue={updateFormValue}/>
 
                             <InputText defaultValue={registerObj.password} type="password" updateType="password" containerStyle="mt-4" labelTitle="Password" updateFormValue={updateFormValue}/>
-                            <InputText defaultValue={registerObj.phone} type="text" updateType="phone" containerStyle="mt-4" labelTitle="Phone" updateFormValue={updateFormValue}/>
 
                         </div>
 
@@ -96,4 +90,4 @@ function Register(){
     )
 }
 
-export default Register
+export default Otp

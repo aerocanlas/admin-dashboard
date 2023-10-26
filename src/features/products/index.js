@@ -148,7 +148,7 @@ function Transactions(){
                                         <div className="flex items-center space-x-3">
                                             <div className="avatar">
                                                 <div className="mask mask-circle w-12 h-12">
-                                                    <img src={l.avatar} alt="Avatar" />
+                                                    <img src={`https://www.motolite.ph/images/bat3.webp`} alt="Avatar" />
                                                 </div>
                                             </div>
                                         </div>

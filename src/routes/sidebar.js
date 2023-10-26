@@ -20,7 +20,7 @@ const submenuIconClasses = `h-5 w-5`
 const routes = [
 
   {
-    path: '/app/leads', // url
+    path: '/app/customers', // url
     icon: <UserGroupIcon className={iconClasses}/>, // icon component
     name: 'Customer Profile', // name that appear in Sidebar
   },
@@ -130,7 +130,7 @@ const routes = [
   },
 
   {
-    path: '/app/login', // url
+    path: '/login', // url
     icon: <ArrowLeftOnRectangleIcon className={iconClasses}/>, // icon component
     name: 'Logout', // name that appear in Sidebar
   },

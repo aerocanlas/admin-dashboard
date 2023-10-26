@@ -70,16 +70,15 @@ function Leads(){
                                     <tr key={k}>
                                     <td>
                                         <div className="flex items-center space-x-3">
-                                            <div className="font-bold">1</div> 
+                                            <div>#123456</div> 
                                         </div>
                                     </td>
                                     <td>
                                     <div>
-                                        <div className="font-bold">{l.first_name}</div>
-                                        <div className="text-sm opacity-50">{l.last_name}</div>
+                                        <div className="font-bold">{'Juan Dela Cruz'}</div>
                                     </div>
                                     </td>
-                                    <td>{l.email}</td>
+                                    <td>{'juandelacruz@gmail.com'}</td>
                                     
                                     <td>
                                         <button className="btn btn-square btn-ghost" onClick={() => navigate("/app/edit-customer-profile")}><PencilSquareIcon className="w-5"/></button>

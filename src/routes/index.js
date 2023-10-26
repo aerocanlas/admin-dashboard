@@ -15,6 +15,7 @@ const Bills = lazy(() => import('../pages/protected/Bills'))
 const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
 const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
+const Customers = lazy(() => import('../pages/protected/Customers'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
 const EditCustomerProfile = lazy(() => import('../pages/protected/EditCustomerProfile'))
 const Appointments = lazy(() => import('../pages/protected/Appointments'))
@@ -33,8 +34,8 @@ const routes = [
     component: Welcome, // view rendered
   },
   {
-    path: '/leads',
-    component: Leads,
+    path: '/customers',
+    component: Customers,
   },
   {
     path: '/settings-team',

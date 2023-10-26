@@ -14,5 +14,6 @@ module.exports = Object.freeze({
 
     CONFIRMATION_MODAL_CLOSE_TYPES : {
         LEAD_DELETE : "LEAD_DELETE",
+        ORDER_DELETE : "ORDER_DELETE",
     },
 });

@@ -41,7 +41,7 @@ function App() {
           {/* Place new routes over this */}
           <Route path="/app/*" element={<Layout />} />
 
-          <Route path="*" element={<useNavigate to={token ? "/customers" : "/customers"} replace />}/>
+          <Route path="*" element={<useNavigate to={token ? "/login" : "/customers"} replace />}/>
 
         </Routes>
       </Router>

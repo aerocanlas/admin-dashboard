@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 
-export const getProductsContent = createAsyncThunk('/products/content', async () => {
+export const getLeadsContent = createAsyncThunk('/leads/content', async () => {
 	const response = await axios.get('/api/users?page=2', {})
 	return response.data;
 })
@@ -15,6 +15,7 @@ export const leadsSlice = createSlice({
         leads : []
     },
     reducers: {
+
 
         addNewLead: (state, action) => {
             let {newLeadObj} = action.payload
@@ -28,19 +29,19 @@ export const leadsSlice = createSlice({
     },
 
     extraReducers: {
-		[getProductsContent.pending]: state => {
+		[getLeadsContent.pending]: state => {
 			state.isLoading = true
 		},
-		[getProductsContent.fulfilled]: (state, action) => {
+		[getLeadsContent.fulfilled]: (state, action) => {
 			state.leads = action.payload.data
 			state.isLoading = false
 		},
-		[getProductsContent.rejected]: state => {
+		[getLeadsContent.rejected]: state => {
 			state.isLoading = false
 		},
     }
 })
 
-export const { addNewLead, deleteLead } = leadsSlice.actions
+export const { addNewLead, deleteService } = leadsSlice.actions
 
 export default leadsSlice.reducer

@@ -35,7 +35,7 @@ const routes = [
     name: 'Service Management', // name that appear in Sidebar
   },
   {
-    path: '/app/settings-billing', // url
+    path: '/app/orders', // url
     icon: <ShoppingBagIcon className={iconClasses}/>, // icon component
     name: 'Orders', // name that appear in Sidebar
   },

@@ -9,6 +9,8 @@ import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import SearchBar from "../../components/Input/SearchBar"
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
+import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from '../../utils/globalConstantUtil'
+import { openModal } from "../common/modalSlice"
 
 
 const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
@@ -36,12 +38,15 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
         }
     }, [searchText])
 
+    const dispatch = useDispatch()
+
+    const openAddNewLeadModal = () => {
+        dispatch(openModal({title : "Add New Lead", bodyType : MODAL_BODY_TYPES.LEAD_ADD_NEW}))
+    }
+
     return(
         <div className="inline-block float-right">
-            
-        <div className="inline-block float-right pl-5">
-            <button className="btn px-6 btn-sm normal-case btn-primary">Add New</button>
-        </div>
+            <button className="btn px-6 btn-sm normal-case btn-primary" onClick={() => openAddNewLeadModal()}>Add New</button>
         </div>
     )
 }

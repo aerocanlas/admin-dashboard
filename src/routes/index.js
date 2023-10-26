@@ -6,18 +6,18 @@ const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
 const Page404 = lazy(() => import('../pages/protected/404'))
 const Blank = lazy(() => import('../pages/protected/Blank'))
-const Leads = lazy(() => import('../pages/protected/Leads'))
 const Integration = lazy(() => import('../pages/protected/Integration'))
 const Calendar = lazy(() => import('../pages/protected/Calendar'))
 const Team = lazy(() => import('../pages/protected/Team'))
 const Transactions = lazy(() => import('../pages/protected/Transactions'))
-const Bills = lazy(() => import('../pages/protected/Bills'))
+const Orders = lazy(() => import('../pages/protected/Orders'))
 const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
 const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const Customers = lazy(() => import('../pages/protected/Customers'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
 const EditCustomerProfile = lazy(() => import('../pages/protected/EditCustomerProfile'))
+const EditServiceDetails = lazy(() => import('../pages/protected/EditServiceDetails'))
 const Appointments = lazy(() => import('../pages/protected/Appointments'))
 const Reports = lazy(() => import('../pages/protected/Reports'))
 const Inventory = lazy(() => import('../pages/protected/Inventory'))
@@ -54,6 +54,10 @@ const routes = [
     component: EditProductDetails,
   },
   {
+    path: '/edit-service-details',
+    component: EditServiceDetails,
+  },
+  {
     path: '/inventory',
     component: Inventory,
   },
@@ -70,8 +74,8 @@ const routes = [
     component: Appointments,
   },
   {
-    path: '/settings-billing',
-    component: Bills,
+    path: '/orders',
+    component: Orders,
   },
   {
     path: '/reports',

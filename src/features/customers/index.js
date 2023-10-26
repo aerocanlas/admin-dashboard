@@ -10,16 +10,6 @@ import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
 import { showNotification } from '../common/headerSlice'
 
-const TopSideButtons = () => {
-
-    const dispatch = useDispatch()
-
-    const openAddNewLeadModal = () => {
-        dispatch(openModal({title : "Add New Lead", bodyType : MODAL_BODY_TYPES.LEAD_ADD_NEW}))
-    }
-
- 
-}
 
 function Leads(){
 
@@ -48,7 +38,7 @@ function Leads(){
     return(
         <>
             
-            <TitleCard title="Existing Users" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
+            <TitleCard title="Existing Users" topMargin="mt-2">
 
 
                 {/* Leads List in table format loaded from slice after api call */}

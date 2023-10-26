@@ -13,7 +13,7 @@ function EditProductDetails(){
 
     const [filterParam, setFilterParam] = useState("")
     const [searchText, setSearchText] = useState("")
-    const typeFilters = ["In Stock", "Out of Stock"]
+    const typeFilters = ["Available", "Not Available"]
 
     const showFiltersAndApply = (params) => {
         applyFilter(params)
@@ -41,7 +41,7 @@ function EditProductDetails(){
 
     // Call API to update profile settings changes
     const updateProfile = () => {
-        dispatch(showNotification({message : "Profile Updated", status : 1}))    
+        dispatch(showNotification({message : "Service Details Updated", status : 1}))    
     }
 
     const updateFormValue = ({updateType, value}) => {
@@ -54,13 +54,13 @@ function EditProductDetails(){
             <TitleCard title="Edit Details" topMargin="mt-2">
                 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <InputText labelTitle="Product Name" defaultValue="Motolite Gold" updateFormValue={updateFormValue}/>
+                    <InputText labelTitle="Service Name" defaultValue="Preventive Maintenance" updateFormValue={updateFormValue}/>
                     
                     <div className="pl-3 pb-6">
-                        Product Status <br></br> 
+                        Service Status <br></br> 
 
                     <div className="dropdown dropdown-bottom dropdown-end pt-3">
-                        <label tabIndex={0} className="btn btn-sm btn-outline">Choose Product Status<ChevronDownIcon className="pl-2 w-4 mr-1"/></label>
+                        <label tabIndex={0} className="btn btn-sm btn-outline">Choose Service Status<ChevronDownIcon className="pl-2 w-4 mr-1"/></label>
                         <ul tabIndex={0} className="dropdown-content menu p-1 text-sm shadow bg-base-100 rounded-box w-52">
                     {
                         typeFilters.map((l, k) => {
@@ -71,11 +71,8 @@ function EditProductDetails(){
                     <li><a onClick={() => removeAppliedFilter()}>Remove Filter</a></li>
                         </ul>
                     </div>
-
-
                     </div>
-                    <InputText labelTitle="Category" defaultValue="Car Battery" updateFormValue={updateFormValue}/>
-
+                    
                     <InputText labelTitle="Price" defaultValue="PHP 5,600.00" updateFormValue={updateFormValue}/>
 
                     <form >

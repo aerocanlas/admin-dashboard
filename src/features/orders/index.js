@@ -1,12 +1,13 @@
 import moment from "moment"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import TitleCard from "../../../components/Cards/TitleCard"
-import { showNotification } from '../../common/headerSlice'
+import TitleCard from "../../components/Cards/TitleCard"
+import { showNotification } from '../common/headerSlice'
+import { deleteLead, getLeadsContent } from "./leadSlice"
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
+import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from '../../utils/globalConstantUtil'
 import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
-
-
+import { openModal } from "../common/modalSlice"
 
 
 const BILLS = [
@@ -31,6 +32,12 @@ const BILLS = [
 
 function Billing(){
 
+    const dispatch = useDispatch()
+
+    const deleteOrder = (index) => {
+        dispatch(openModal({title : "Confirmation", bodyType : MODAL_BODY_TYPES.CONFIRMATION, 
+        extraObject : { message : `Are you sure you want to delete this order?`, type : CONFIRMATION_MODAL_CLOSE_TYPES.ORDER_DELETE, index}}))
+    }
 
     const [bills, setBills] = useState(BILLS)
 
@@ -73,7 +80,7 @@ function Billing(){
 
                                     <td>
                                         <button className="btn btn-square btn-ghost"><PencilSquareIcon className="w-5"/></button>
-                                        <button className="btn btn-square btn-ghost"><TrashIcon className="w-5"/></button>
+                                        <button className="btn btn-square btn-ghost" onClick={() => deleteOrder(k)}><TrashIcon className="w-5"/></button>
                                     </td>
 
                                     </tr>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import { openModal } from "../common/modalSlice"
-import { deleteLead, getLeadsContent } from "./leadSlice"
+import { deleteLead, getProductsContent } from "./leadSlice"
 import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from '../../utils/globalConstantUtil'
 import TitleCard from "../../components/Cards/TitleCard"
 import { RECENT_TRANSACTIONS } from "../../utils/dummyData"
@@ -15,6 +15,7 @@ import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
 
 
 const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
+    const dispatch = useDispatch()
 
     const [filterParam, setFilterParam] = useState("")
     const [searchText, setSearchText] = useState("")
@@ -25,11 +26,15 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
         setFilterParam(params)
     }
 
-    const dispatch = useDispatch()
-
-    const openAddNewLeadModal = () => {
-        dispatch(openModal({title : "Add New Lead", bodyType : MODAL_BODY_TYPES.LEAD_ADD_NEW}))
+    const openAddNewProductModal = () => {
+        dispatch(openModal({title : "Add New Product", bodyType : MODAL_BODY_TYPES.LEAD_ADD_NEW}))
     }
+
+    return(
+        <div className="inline-block float-right">
+            <button className="btn px-6 btn-sm normal-case btn-primary" onClick={() => openAddNewProductModal()}>Add New Product</button>
+        </div>
+    )
 
     const removeAppliedFilter = () => {
         removeFilter()
@@ -79,15 +84,13 @@ const STATUS = [
 
 function Transactions(){
 
-
-
     const [status, setStatus] = useState(STATUS)
 
     const {leads } = useSelector(state => state.lead)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getLeadsContent())
+        dispatch(getProductsContent())
     }, [])
 
     const [trans, setTrans] = useState(RECENT_TRANSACTIONS)
@@ -103,7 +106,7 @@ function Transactions(){
     
     const deleteCurrentLead = (index) => {
         dispatch(openModal({title : "Confirmation", bodyType : MODAL_BODY_TYPES.CONFIRMATION, 
-        extraObject : { message : `Are you sure you want to delete this user?`, type : CONFIRMATION_MODAL_CLOSE_TYPES.LEAD_DELETE, index}}))
+        extraObject : { message : `Are you sure you want to delete this product?`, type : CONFIRMATION_MODAL_CLOSE_TYPES.LEAD_DELETE, index}}))
     }
 
     const navigate = useNavigate();

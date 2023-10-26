@@ -42,11 +42,6 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 
     return(
         <div className="inline-block float-right">
-            
-        <div className="inline-block float-right pl-5">
-            <button className="btn px-6 btn-sm normal-case btn-primary">Add New</button>
-        </div>
-
             <div className="dropdown dropdown-bottom dropdown-end">
                 <label tabIndex={0} className="btn btn-sm btn-outline"><FunnelIcon className="w-5 mr-2"/>Filter</label>
                 <ul tabIndex={0} className="dropdown-content menu p-2 text-sm shadow bg-base-100 rounded-box w-52">

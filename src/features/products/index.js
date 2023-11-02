@@ -27,7 +27,7 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
     }
 
     const openAddNewProductModal = () => {
-        dispatch(openModal({title : "Add New Product", bodyType : MODAL_BODY_TYPES.LEAD_ADD_NEW}))
+        dispatch(openModal({title : "Add New Product", bodyType : MODAL_BODY_TYPES.PRODUCT_ADD_NEW}))
     }
 
     return(

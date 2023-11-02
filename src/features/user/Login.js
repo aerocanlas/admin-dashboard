@@ -16,50 +16,42 @@ function Login(){
     const [errorMessage, setErrorMessage] = useState("")
     const [loginObj, setLoginObj] = useState(INITIAL_LOGIN_OBJ)
 
-    const submitForm = (e) =>{
+    const submitForm = async (e) =>{
         e.preventDefault()
         setErrorMessage("")
 
         if(loginObj.emailId.trim() === "")return setErrorMessage("Email Id is required! (use any value)")
         if(loginObj.password.trim() === "")return setErrorMessage("Password is required! (use any value)")
-        else{
-            setLoading(true)
-            // Call API to check user credentials and save token in localstorage
-            localStorage.setItem("token", "DumyTokenHere")
-            setLoading(false)
-            window.location.href = 'app/customers'
-        }
+
+       await fetch("http://localhost:3001/user/login", {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify({
+                email: loginObj.emailId,
+                password: loginObj.password,
+            })
+        }).then( async(data) => { 
+            
+            const res = await data.json()        
+            console.log(res)
+            localStorage.setItem("vroom-token", res)
+
+
+            const dataToekn = jwtDecode(localStorage.getItem("vroom-token"))
+            
+            if(dataToekn.role === "administrator"){     
+                window.location = "app/customers"
+            } else {
+                window.location = "app/customers"
+            }
+        })
+    
     }
 
         
-    //     if(loginObj.emailId.trim() === "")return setErrorMessage("Email Id is required! (use any value)")
-    //     if(loginObj.password.trim() === "")return setErrorMessage("Password is required! (use any value)")
-
-    //    await fetch("http://localhost:3001/user/login", {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': "application/json"
-    //         },
-    //         body: JSON.stringify({
-    //             email: loginObj.emailId,
-    //             password: loginObj.password,
-    //         })
-    //     }).then( async(data) => { 
-            
-    //         const res = await data.json()        
-    //         console.log(res)
-    //         localStorage.setItem("vroom-token", res)
-
-
-    //         const dataToekn = jwtDecode(location.getItem("vroom-token"))
-            
-    //         if(dataToekn.role === "administrator"){     
-    //             window.location = "../pages/protected/Leads"
-    //         } else {
-    //             window.location = "../pages/protected/Leads"
-    //         }
-    //     })
-    // }
+ 
 
     const updateFormValue = ({updateType, value}) => {
         setErrorMessage("")

@@ -4,7 +4,6 @@ import Register from '../features/user/Register'
 
 function ExternalPage(){
 
-
     return(
         <div className="">
                 <Register />

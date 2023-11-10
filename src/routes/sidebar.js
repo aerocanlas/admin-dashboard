@@ -14,6 +14,7 @@ import PresentationChartBarIcon from '@heroicons/react/24/outline/PresentationCh
 import ListBulletIcon from '@heroicons/react/24/outline/ListBulletIcon'
 import ArchiveBoxIcon from '@heroicons/react/24/outline/ArchiveBoxIcon'
 
+import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon'
 const iconClasses = `h-6 w-6`
 const submenuIconClasses = `h-5 w-5`
 
@@ -71,6 +72,11 @@ const routes = [
     path: '/app/inventory', // url
     icon: <ClipboardDocumentCheckIcon className={iconClasses}/>, // icon component
     name: 'Inventory', // name that appear in Sidebar
+  },
+  {
+    path: '/app/chats', // url
+    icon: <ChatBubbleLeftRightIcon className={iconClasses}/>, // icon component
+    name: 'Chats', // name that appear in Sidebar
   },
   
   // {

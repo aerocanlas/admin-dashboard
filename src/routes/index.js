@@ -19,6 +19,7 @@ const DocComponents = lazy(() => import('../pages/DocComponents'))
 const EditCustomerProfile = lazy(() => import('../pages/protected/EditCustomerProfile'))
 const EditServiceDetails = lazy(() => import('../pages/protected/EditServiceDetails'))
 const Appointments = lazy(() => import('../pages/protected/Appointments'))
+const Chats = lazy(() => import('../pages/protected/Chats'))
 const Reports = lazy(() => import('../pages/protected/Reports'))
 const Inventory = lazy(() => import('../pages/protected/Inventory'))
 const EditProductDetails = lazy(() => import('../pages/protected/EditProductDetails'))
@@ -72,6 +73,10 @@ const routes = [
   {
     path: '/appointments',
     component: Appointments,
+  },
+  {
+    path: '/chats',
+    component: Chats,
   },
   {
     path: '/orders',

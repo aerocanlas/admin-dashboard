@@ -26,12 +26,12 @@ const routes = [
     name: 'Customer Profile', // name that appear in Sidebar
   },
   {
-    path: '/app/transactions', // url
+    path: '/app/products', // url
     icon: <RectangleStackIcon className={iconClasses}/>, // icon component
     name: 'Product Management', // name that appear in Sidebar
   },
   {
-    path: '/app/calendar', // url
+    path: '/app/services', // url
     icon: <CalendarDaysIcon className={iconClasses}/>, // icon component
     name: 'Service Management', // name that appear in Sidebar
   },
@@ -56,12 +56,12 @@ const routes = [
         name: 'Generate Reports', // name that appear in Sidebar
       },
       {
-        path: '/app/reports', //url
+        path: '/app/audit', //url
         icon: <ListBulletIcon className={submenuIconClasses}/>, // icon component
-        name: 'Audit Logs', // name that appear in Sidebar
+        name: 'Audit', // name that appear in Sidebar
       },
       {
-        path: '/app/reports', //url
+        path: '/app/archive', //url
         icon: <ArchiveBoxIcon className={submenuIconClasses}/>, // icon component
         name: 'Report Archive', // name that appear in Sidebar
       },

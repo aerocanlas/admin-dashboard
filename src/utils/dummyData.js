@@ -19,7 +19,9 @@ module.exports = Object.freeze({
     ],
 
      RECENT_TRANSACTIONS : [
-         {productName : "Motolite Gold", avatar : "https://cdn.shopify.com/s/files/1/0615/7982/1304/files/Motolite_Gold.png?v=1687245245", productID : "123456", productStatus : "In Stock", price : "PHP 5,600", category : "Car Battery"},
+         {productName : "Motolite Gold", avatar : "https://cdn.shopify.com/s/files/1/0615/7982/1304/files/Motolite_Gold.png?v=1687245245", productID : "123456", productStatus : "In Stock - Available", price : "PHP 5,600", category : "Car Battery"},
+         {productName : "Shell Helix Power Carbon Neutral", avatar : "https://www.shell.com.my/motorists/oils-lubricants/helix-for-cars/helix-fully-synthetic/shell-helix-power-0w-40/_jcr_content/root/main/section/standalone_asset.coreimg.jpeg/1692370989578/shell-helix-power-0w-40-cn-upm-up.jpeg?imwidth=301&impolicy=amidala-image&imdensity=15", productID : "123457", productStatus : "In Stock - Critical", price : "PHP 1,600", category : "Engine Oil"},
+
     
     
     

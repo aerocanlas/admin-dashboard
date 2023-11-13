@@ -12,6 +12,7 @@ import SearchBar from "../../components/Input/SearchBar"
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
 import InputText from '../../components/Input/InputText'
+import { useNavigate } from "react-router-dom";
 
 
 const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
@@ -61,9 +62,11 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 
 function Transactions(){
 
+    const navigate = useNavigate();
+
     const [filterParam, setFilterParam] = useState("")
     const [searchText, setSearchText] = useState("")
-    const typeFilters = ["Order Summary"]
+    const typeFilters = ["Sales Report"]
 
     const showFiltersAndApply = (params) => {
         applyFilter(params)
@@ -87,15 +90,28 @@ function Transactions(){
         setTrans(filteredType)
     }
 
+
     // Search according to name
     const applySearch = (value) => {
         let filteredType = RECENT_TYPE.filter((t) => {return t.email.toLowerCase().includes(value.toLowerCase()) ||  t.email.toLowerCase().includes(value.toLowerCase())})
         setTrans(filteredType)
     }
+    
+    const dispatch = useDispatch()
+
+     // Call API to update profile settings changes
+     const generateReport = () => {
+        dispatch(showNotification({message : "Report Generated", status : 1}))    
+    }
 
     const updateFormValue = ({updateType, value}) => {
         console.log(updateType)
     }
+
+    const handleButtonClick = () => {
+        generateReport();
+        // Do something else
+      };
 
     return(
         <>
@@ -105,10 +121,10 @@ function Transactions(){
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                     <div className="pl-3 pb-6">
-                        Order Type <br></br> 
+                        Choose Report <br></br> 
 
                     <div className="dropdown dropdown-bottom dropdown-end pt-3">
-                        <label tabIndex={0} className="btn btn-sm btn-outline">Choose Order Type<ChevronDownIcon className="pl-2 w-4 mr-1"/></label>
+                        <label tabIndex={0} className="btn btn-sm btn-outline">Choose Report Type<ChevronDownIcon className="pl-2 w-4 mr-1"/></label>
                         <ul tabIndex={0} className="dropdown-content menu p-1 text-sm shadow bg-base-100 rounded-box w-52">
                     {
                         typeFilters.map((l, k) => {
@@ -116,7 +132,7 @@ function Transactions(){
                         })
                     }
                     <div className="divider mt-0 mb-0"></div>
-                    <li><a onClick={() => removeAppliedFilter()}>Remove Filter</a></li>
+                    <li><a onClick={() => removeAppliedFilter()}>Remove Selection</a></li>
                 </ul>
             </div>
 
@@ -124,13 +140,6 @@ function Transactions(){
                     </div>
 
                     
-                    <InputText labelTitle="Middle Name" defaultValue="Reyes" updateFormValue={updateFormValue}/>
-                    <InputText labelTitle="Last Name" defaultValue="Dela Cruz" updateFormValue={updateFormValue}/>
-                    <InputText labelTitle="Email Address" defaultValue="juandelacruz@gmail.com" updateFormValue={updateFormValue}/>
-                    <InputText labelTitle="Shipping Address" defaultValue="Espana Blvd., Sampaloc, Manila, Philippines 1008." updateFormValue={updateFormValue}/>
-                    <InputText labelTitle="Mobile Number" defaultValue="09123456789" updateFormValue={updateFormValue}/>
-                </div>
-                <div className="divider" ></div>
 
 
                 {/* Team Member list in table format loaded constant
@@ -177,6 +186,12 @@ function Transactions(){
                     </tbody>
                 </table>
             </div> */}
+            </div>
+
+            <div className="divider" ></div>
+
+            <div className="mt-16"><button className="btn btn-primary float-right" onClick={() => handleButtonClick()}>Generate Report</button></div>
+
             </TitleCard>
         </>
     )

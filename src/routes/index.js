@@ -7,10 +7,11 @@ const Welcome = lazy(() => import('../pages/protected/Welcome'))
 const Page404 = lazy(() => import('../pages/protected/404'))
 const Blank = lazy(() => import('../pages/protected/Blank'))
 const Integration = lazy(() => import('../pages/protected/Integration'))
-const Calendar = lazy(() => import('../pages/protected/Calendar'))
+const Services = lazy(() => import('../pages/protected/Services'))
 const Team = lazy(() => import('../pages/protected/Team'))
-const Transactions = lazy(() => import('../pages/protected/Transactions'))
+const Products = lazy(() => import('../pages/protected/Products'))
 const Orders = lazy(() => import('../pages/protected/Orders'))
+const Archive = lazy(() => import('../pages/protected/Archive'))
 const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
 const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
@@ -21,8 +22,13 @@ const EditServiceDetails = lazy(() => import('../pages/protected/EditServiceDeta
 const Appointments = lazy(() => import('../pages/protected/Appointments'))
 const Chats = lazy(() => import('../pages/protected/Chats'))
 const Reports = lazy(() => import('../pages/protected/Reports'))
+const Audit = lazy(() => import('../pages/protected/Audit'))
 const Inventory = lazy(() => import('../pages/protected/Inventory'))
 const EditProductDetails = lazy(() => import('../pages/protected/EditProductDetails'))
+const EditAppointments = lazy(() => import('../pages/protected/EditAppointments'))
+const AddNewProducts = lazy(() => import('../pages/protected/AddNewProducts'))
+const AddNewAppointments = lazy(() => import('../pages/protected/AddNewAppointments'))
+const AddNewService = lazy(() => import('../pages/protected/AddNewService'))
 const Login = lazy(() => import('../pages/Login'))
 
 const routes = [
@@ -43,12 +49,8 @@ const routes = [
     component: Team,
   },
   {
-    path: '/calendar',
-    component: Calendar,
-  },
-  {
-    path: '/transactions',
-    component: Transactions,
+    path: '/products',
+    component: Products,
   },
   {
     path: '/edit-product-details',
@@ -59,8 +61,20 @@ const routes = [
     component: EditServiceDetails,
   },
   {
+    path: '/edit-appointments',
+    component: EditAppointments,
+  },
+  {
+    path: '/add-new-appointments',
+    component: AddNewAppointments,
+  },
+  {
     path: '/inventory',
     component: Inventory,
+  },
+  {
+    path: '/archive',
+    component: Archive,
   },
   {
     path: '/settings-profile',
@@ -81,6 +95,10 @@ const routes = [
   {
     path: '/orders',
     component: Orders,
+  },
+  {
+    path: '/services',
+    component: Services,
   },
   {
     path: '/reports',
@@ -107,12 +125,24 @@ const routes = [
     component: Page404,
   },
   {
+    path: '/audit',
+    component: Audit,
+  },
+  {
     path: '/blank',
     component: Blank,
   },
   {
     path: '/login',
     component: Login,
+  },
+  {
+    path: '/add-new-products',
+    component: AddNewProducts,
+  },
+  {
+    path: '/add-new-service',
+    component: AddNewService,
   },
 ]
 

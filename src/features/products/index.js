@@ -17,6 +17,8 @@ import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
 const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
     const dispatch = useDispatch()
 
+    const navigate = useNavigate();
+
     const [filterParam, setFilterParam] = useState("")
     const [searchText, setSearchText] = useState("")
     const productFilters = ["Car Battery", "Tires", "Tire Mags", "Brake Fluid", "Engine Oil"]
@@ -32,7 +34,7 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 
     return(
         <div className="inline-block float-right">
-            <button className="btn px-6 btn-sm normal-case btn-primary" onClick={() => openAddNewProductModal()}>Add New Product</button>
+            <button className="btn px-6 btn-sm normal-case btn-primary" onClick={() => navigate("/app/add-new-products")}>Add New Product</button>
         </div>
     )
 
@@ -83,6 +85,11 @@ const STATUS = [
 ]
 
 function Transactions(){
+
+    const deleteCurrentProduct = (index) => {
+        dispatch(openModal({title : "Confirmation", bodyType : MODAL_BODY_TYPES.CONFIRMATION, 
+        extraObject : { message : `Are you sure you want to delete this product?`, type : CONFIRMATION_MODAL_CLOSE_TYPES.LEAD_DELETE, index}}))
+    }
 
     const [status, setStatus] = useState(STATUS)
 
@@ -163,7 +170,7 @@ function Transactions(){
                                     <td>{l.price}</td>
                                     <td>
                                         <button className="btn btn-square btn-ghost" onClick={() => navigate("/app/edit-product-details")}><PencilSquareIcon className="w-5"/></button>
-                                        <button className="btn btn-square btn-ghost" ><TrashIcon className="w-5"/></button>
+                                        <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentProduct(k)}><TrashIcon className="w-5"/></button>
                                     </td>
                                     </tr>
                                 )

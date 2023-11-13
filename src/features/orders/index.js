@@ -79,7 +79,6 @@ function Billing(){
                                     <td>{getPaymentStatus(l.status)}</td>
 
                                     <td>
-                                        <button className="btn btn-square btn-ghost"><PencilSquareIcon className="w-5"/></button>
                                         <button className="btn btn-square btn-ghost" onClick={() => deleteOrder(k)}><TrashIcon className="w-5"/></button>
                                     </td>
 

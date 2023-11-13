@@ -3,14 +3,14 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import TitleCard from "../../../components/Cards/TitleCard"
 import { showNotification } from '../../common/headerSlice'
-import { RECENT_STATUS } from "../../../utils/dummyData"
 import InputText from '../../../components/Input/InputText'
 import TextAreaInput from '../../../components/Input/TextAreaInput'
 import ToogleInput from '../../../components/Input/ToogleInput'
 import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon'
+import { RECENT_STATUS } from "../../../utils/dummyData"
 import { useNavigate } from "react-router-dom"
 
-function EditProductDetails(){
+function AddNewProducts(){
 
     const [filterParam, setFilterParam] = useState("")
     const [searchText, setSearchText] = useState("")
@@ -42,8 +42,8 @@ function EditProductDetails(){
     const dispatch = useDispatch()
 
     // Call API to update profile settings changes
-    const updateProduct = () => {
-        dispatch(showNotification({message : "Product Details Updated", status : 1}))    
+    const AddNewProducts = () => {
+        dispatch(showNotification({message : "New Product Added", status : 1}))    
     }
 
     const updateFormValue = ({updateType, value}) => {
@@ -53,7 +53,7 @@ function EditProductDetails(){
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
-        updateProduct();
+        AddNewProducts();
         navigate("/app/products");
         // Do something else
       };
@@ -118,7 +118,7 @@ function EditProductDetails(){
                     </div>
                 <div className="divider" ></div>
 
-                <div className="mt-16"><button className="btn btn-primary float-right" onClick={() => handleButtonClick()}>Update Product Details</button></div>
+                <div className="mt-16"><button className="btn btn-primary float-right" onClick={() => handleButtonClick()}>Add New Product</button></div>
                 
             </TitleCard>
         </>
@@ -126,4 +126,4 @@ function EditProductDetails(){
 }
 
 
-export default EditProductDetails
+export default AddNewProducts

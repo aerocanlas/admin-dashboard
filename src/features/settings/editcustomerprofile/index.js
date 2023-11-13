@@ -6,6 +6,7 @@ import { showNotification } from '../../common/headerSlice'
 import InputText from '../../../components/Input/InputText'
 import TextAreaInput from '../../../components/Input/TextAreaInput'
 import ToogleInput from '../../../components/Input/ToogleInput'
+import {useNavigate} from 'react-router-dom'
 
 function EditCustomerProfile(){
 
@@ -14,12 +15,20 @@ function EditCustomerProfile(){
 
     // Call API to update profile settings changes
     const updateProfile = () => {
-        dispatch(showNotification({message : "Profile Updated", status : 1}))    
+        dispatch(showNotification({message : "Customer Profile Updated", status : 1}))    
     }
 
     const updateFormValue = ({updateType, value}) => {
         console.log(updateType)
     }
+
+    const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        updateProfile();
+        navigate("/app/customers");
+        // Do something else
+      };
 
     return(
         <>
@@ -36,7 +45,7 @@ function EditCustomerProfile(){
                 </div>
                 <div className="divider" ></div>
 
-                <div className="mt-16"><button className="btn btn-primary float-right" onClick={() => updateProfile()}>Update</button></div>
+                <div className="mt-16"><button className="btn btn-primary float-right" onClick={() => handleButtonClick()}>Update Customer Profile</button></div>
             </TitleCard>
         </>
     )

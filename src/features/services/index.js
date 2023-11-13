@@ -17,6 +17,8 @@ import { deleteService, getLeadsContent } from "./leadSlice"
 
 const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 
+    const navigate = useNavigate();
+
     const [filterParam, setFilterParam] = useState("")
     const [searchText, setSearchText] = useState("")
     const productFilters = ["Car Battery", "Tires", "Tire Mags", "Brake Fluid", "Engine Oil"]
@@ -48,7 +50,7 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 
     return(
         <div className="inline-block float-right">
-            <button className="btn px-6 btn-sm normal-case btn-primary" onClick={() => openAddNewLeadModal()}>Add New</button>
+            <button className="btn px-6 btn-sm normal-case btn-primary" onClick={() => navigate("/app/add-new-service")}>Add New Service</button>
         </div>
     )
     

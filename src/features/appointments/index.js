@@ -11,9 +11,12 @@ import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
 import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from '../../utils/globalConstantUtil'
 import { openModal } from "../common/modalSlice"
+import { useNavigate } from "react-router-dom";
 
 
 const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
+
+    const navigate = useNavigate();
 
     const [filterParam, setFilterParam] = useState("")
     const [searchText, setSearchText] = useState("")
@@ -46,7 +49,7 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 
     return(
         <div className="inline-block float-right">
-            <button className="btn px-6 btn-sm normal-case btn-primary" onClick={() => openAddNewLeadModal()}>Add New</button>
+            <button className="btn px-6 btn-sm normal-case btn-primary" onClick={() => navigate("/app/add-new-appointments")}>Add New Appoinment</button>
         </div>
     )
 }
@@ -54,6 +57,7 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 
 function Transactions(){
 
+    const navigate = useNavigate();
 
     const [trans, setTrans] = useState(RECENT_TRANSACTIONS)
 
@@ -99,8 +103,8 @@ function Transactions(){
                                     <td>Preventive Maintenance</td>
                                     <td>27 Sep 2023</td>
                                     <td>
-                                        <button className="btn btn-square btn-ghost" ><PencilSquareIcon className="w-5"/></button>
-                                        <button className="btn btn-square btn-ghost" ><TrashIcon className="w-5"/></button>
+                                    <button className="btn btn-square btn-ghost" onClick={() => navigate("/app/edit-appointments")}><PencilSquareIcon className="w-5"/></button>
+                                    <button className="btn btn-square btn-ghost" ><TrashIcon className="w-5"/></button>
                                     </td>
                                     </tr>
                                 )

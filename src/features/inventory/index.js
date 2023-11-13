@@ -59,7 +59,7 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 }
 
 
-function Transactions(){
+function Inventory(){
 
 
     const [trans, setTrans] = useState(RECENT_TRANSACTIONS)
@@ -81,6 +81,12 @@ function Transactions(){
 
     const updateFormValue = ({updateType, value}) => {
         console.log(updateType)
+    }
+
+    const getInventoryStatus = (productStatus) => {
+        if(productStatus  === "In Stock - Available")return <div className="badge badge-success">{productStatus}</div>
+        if(productStatus=== "In Stock - Critical")return <div className="badge badge-warning">{productStatus}</div>
+        else return <div className="badge badge-ghost">{productStatus}</div>
     }
 
     return(
@@ -117,7 +123,7 @@ function Transactions(){
                                     </td>
                                     <td>#{l.productID}</td>
                                     <td>{l.productName}</td>
-                                    <td>{l.productStatus}</td>
+                                    <td>{getInventoryStatus(l.productStatus)}</td>
                                     <td>{l.category}</td>
                 
                                     <td>
@@ -146,4 +152,4 @@ function Transactions(){
 }
 
 
-export default Transactions
+export default Inventory
